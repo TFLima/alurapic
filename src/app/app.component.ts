@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +10,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Alura Pic'
 
-  photos = [
-    {
-      url: "http://10.6.130.11:8081/assets/images/ccimar_0.png",
-      alt: "ccimar"
-    },
-    
-    {
-      url: "https://yt3.googleusercontent.com/axUhdWWrayKPlB7LO68ISweeWevXLAxOrXng2eefbtamO0r-jAbSX2AcFpubfhWILkOJL3r8=s900-c-k-c0x00ffffff-no-rj" ,
-      alt: "marinha"
-    }
-  ];
+  photos: Object[] = [];
+  //photos = [];
+
+  constructor(http: HttpClient) {
+    //console.log(http);
+    http
+      .get<Object[]>('http://localhost:3000/flavio/photos')
+      .subscribe(photos => 
+          this.photos = photos,
+          err => console.log(err.message));    
+  }
 }
