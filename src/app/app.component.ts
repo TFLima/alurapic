@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,18 +6,4 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
-  title = 'Alura Pic'
-
-  photos: Object[] = [];
-  //photos = [];
-
-  constructor(http: HttpClient) {
-    //console.log(http);
-    http
-      .get<Object[]>('http://localhost:3000/flavio/photos')
-      .subscribe(photos => 
-          this.photos = photos,
-          err => console.log(err.message));    
-  }
-}
+export class AppComponent { }
